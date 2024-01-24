@@ -1,13 +1,57 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  signal,
+  DestroyRef,
+  inject,
+  Signal,
+  computed,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { DataAccessService } from '../../projects/data-access/src/public-api';
+import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'pokedex';
+  destroyRef = inject(DestroyRef);
+
+  pokemon = signal<any>([]);
+  pageInfo: Signal<{ count: number; next: string; previous: string }> =
+    computed(() => this.dataAccess.pageInfo());
+  callState: Signal<{ loading: boolean; error: string | null }> = computed(() =>
+    this.dataAccess.callState()
+  );
+
+  constructor(private dataAccess: DataAccessService) {
+    this.dataAccess
+      .getPokemon()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((pokemon) => {
+        this.pokemon.set(pokemon);
+      });
+  }
+
+  loadMore() {
+    this.dataAccess
+      .getNextPokemon()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((pokemon) => {
+        this.pokemon.set(pokemon);
+      });
+  }
+
+  loadPrevious() {
+    this.dataAccess
+      .getPreviousPokemon()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((pokemon) => {
+        this.pokemon.set(pokemon);
+      });
+  }
 }
