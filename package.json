@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build && cp ./dist/pokedex/browser/index.html ./dist/pokedex/browser/200.html && surge ./dist/pokedex/browser/ https://davavila-test-app.surge.sh"
   },
   "private": true,
   "dependencies": {
