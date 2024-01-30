@@ -1,11 +1,15 @@
-.pokemon {
+.pokemon-details-container {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  color: #000;
+  align-items: center;
+  gap: 1rem;
 }
 
 .pokemon-name {
   font-size: 1.2rem;
   text-align: center;
+}
+
+.back-btn {
+  max-width: 1rem;
 }
