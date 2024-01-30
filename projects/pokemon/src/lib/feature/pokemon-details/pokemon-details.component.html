@@ -1,4 +1,9 @@
 <div class="pokemon-details-container">
+  @if(callState().loading) {
+  <mat-spinner></mat-spinner>
+  } @else if(callState().error !== null) {
+  <p>Something went wrong</p>
+  } @else {
   <div class="pokemon-details">
     <img
       class="pokemon-img"
@@ -9,6 +14,6 @@
       {{ pokemon().name }}
     </p>
   </div>
-
+  }
   <button mat-stroked-button color="primary" routerLink="">Back</button>
 </div>

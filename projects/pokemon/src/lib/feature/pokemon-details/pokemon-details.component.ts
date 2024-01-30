@@ -12,11 +12,17 @@ import { DataAccessService } from '../../../../../data-access/src/lib/data-acces
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-pokemon-details',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterLink],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    RouterLink,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.scss',
 })
