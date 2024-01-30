@@ -1,31 +1,41 @@
 <div class="container">
   @if(callState().loading) {
-  <p>Loading...</p>
+  <mat-spinner></mat-spinner>
   } @else if(callState().error !== null) {
   <p>Something went wrong</p>
   } @else {
   <div class="pokemon-container">
     @for (item of pokemon(); track item.id) {
     <div class="pokemon">
-      <p class="pokemon-name">
-        {{ item.name }}
-      </p>
       <img
         class="pokemon-img"
         src="{{ item.sprites.other['official-artwork'].front_default }}"
         alt="{{ item.name }}"
       />
+      <p class="pokemon-name">
+        {{ item.name }}
+      </p>
     </div>
     }
   </div>
   }
 
   <div class="paginator-container">
-    <button [disabled]="pageInfo().previous === null" (click)="loadPrevious()">
+    <button
+      mat-stroked-button
+      color="primary"
+      [disabled]="pageInfo().previous === null"
+      (click)="loadPrevious()"
+    >
       Load Previous
     </button>
 
-    <button [disabled]="pageInfo().next === null" (click)="loadMore()">
+    <button
+      mat-stroked-button
+      color="primary"
+      [disabled]="pageInfo().next === null"
+      (click)="loadMore()"
+    >
       Load More
     </button>
   </div>
