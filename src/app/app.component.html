@@ -1,4 +1,7 @@
 <div class="container">
+  <mat-toolbar color="primary">
+    <span>Pokedex</span>
+  </mat-toolbar>
   @if(callState().loading) {
   <mat-spinner></mat-spinner>
   } @else if(callState().error !== null) {
