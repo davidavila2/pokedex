@@ -26,6 +26,17 @@ export class DataAccessService {
     return this.BASE_URL;
   }
 
+  getPokemonDetails(id: string) {
+    this.callState.set({ loading: true, error: null });
+    return this.http.get(`${this.BASE_URL}/pokemon/${id}`).pipe(
+      tap(() => this.callState.set({ loading: false, error: null })),
+      catchError((error) => {
+        this.callState.set({ loading: false, error: error.message });
+        throw error;
+      })
+    );
+  }
+
   getPokemon() {
     this.callState.set({ loading: true, error: null });
     return this.http.get(`${this.BASE_URL}/pokemon?limit=15`).pipe(

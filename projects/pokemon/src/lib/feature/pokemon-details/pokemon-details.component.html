@@ -1,0 +1,14 @@
+<div class="pokemon-details-container">
+  <div class="pokemon-details">
+    <img
+      class="pokemon-img"
+      src="{{ pokemon().sprites.other['official-artwork'].front_default }}"
+      alt="{{ pokemon().name }}"
+    />
+    <p class="pokemon-name">
+      {{ pokemon().name }}
+    </p>
+  </div>
+
+  <button mat-stroked-button color="primary" routerLink="">Back</button>
+</div>

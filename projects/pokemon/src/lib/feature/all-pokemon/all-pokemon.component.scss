@@ -1,0 +1,37 @@
+.pokemon-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: calc(100vh - var(--mat-toolbar-standard-height));
+}
+
+.pokemon {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.pokemon:hover {
+  transform: scale(1.1);
+}
+
+.pokemon-name {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.pokemon-img {
+  width: 10rem;
+  height: 10rem;
+}
+
+.paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

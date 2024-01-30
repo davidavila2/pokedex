@@ -1,0 +1,11 @@
+.pokemon {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #000;
+}
+
+.pokemon-name {
+  font-size: 1.2rem;
+  text-align: center;
+}
